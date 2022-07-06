@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:PGB.ViewModels;assembly=PGB"
+             mc:Ignorable="d"
+             Title="Sign In"
+             BackgroundColor="#151723"
+             x:Class="PGB.Pages.LogIn">
+
+    <ContentPage.BindingContext>
+        <viewModels:LoginViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Image Source="car_2.png"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="Start"
+                   Margin="0,0,0,-50"/>
+            <Label 
+                   TextColor="#4EDBA8"
+                   FontSize="20"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,50"/>
+            <Label Text="       Username"
+                   TextColor="#4EDBA8"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="StartAndExpand"/>
+            <Entry Placeholder="    username" PlaceholderColor="#686868" Keyboard="Chat" TextColor="#4EDBA8" FontFamily="{StaticResource MontserratLight}" VerticalOptions="Start" Text="{Binding Username}" ClearButtonVisibility="WhileEditing"/>
+            <Label Text="       Password"
+                   TextColor="#4EDBA8"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="StartAndExpand"/>
+            <Entry IsPassword="true" Placeholder="    password" PlaceholderColor="#686868" Keyboard="Chat" TextColor="#4EDBA8" FontFamily="{StaticResource MontserratLight}" VerticalOptions="Start" Text="{Binding Password}" ClearButtonVisibility="WhileEditing"/>
+            <Button Text="Sign In"
+                    TextColor="White"
+                    BackgroundColor="#49AF74"
+                    WidthRequest="200"
+                    Margin="20"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    FontFamily="{StaticResource MontserratBold}"
+                    Command="{Binding Login}"/>
+            <Button Text="Register"
+                    TextColor="White"
+                    BackgroundColor="#1C7059"
+                    WidthRequest="200"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" 
+                    FontFamily="{StaticResource MontserratBold}"
+                    Clicked="OnButtonClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

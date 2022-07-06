@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+              BackgroundColor="#151723"
+             Title="Trip"
+             x:Class="PGB.Pages.DetailedTrip">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#151723" Padding="40">
+            <Image  
+                    HeightRequest="60"
+                    WidthRequest="60"
+                    Source="trips.png"
+                    HorizontalOptions="Center"
+                    Aspect="Fill">
+            </Image>
+            <StackLayout>
+                <Label TextColor="#4EDBA8"
+                   Text="Name:"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="Center"
+                   Margin="0, 60, 0 ,0"/>
+                <Label TextColor="White"
+                   Text="{Binding Trip.TripName}"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="Center"
+                   Margin="0, 0, 0 ,20"/>
+                <Label TextColor="#4EDBA8"
+                   Text="Vehicle Registration Number:"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="Center"/>
+                <Label TextColor="White"
+                   Text="{Binding Trip.VehicleRegistrationNumber}"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="Center"
+                   Margin="0, 0, 0 ,20"/>
+                <Label TextColor="#4EDBA8"
+                   Text="Cost:"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="Center"/>
+                <Label TextColor="White"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="Center"
+                       Margin="0, 0, 0 ,20">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Trip.Cost}" TextColor="White"/>
+                            <Span Text=" €" TextColor="White"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label TextColor="#4EDBA8"
+                   Text="Durationt:"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="Center"/>
+                <Label TextColor="White"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="Center"
+                       Margin="0, 0, 0 ,20">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Trip.Duration}" TextColor="White"/>
+                            <Span Text=" h" TextColor="White"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+            <FlexLayout JustifyContent="SpaceEvenly" AlignItems="Center" Direction="Row" VerticalOptions="EndAndExpand">
+                <ImageButton Source="back.png"
+                                HorizontalOptions="StartAndExpand"
+                             HeightRequest="40"
+                             BackgroundColor="Transparent"
+                             WidthRequest="40"
+                                 Margin="0,0,20,0"
+                             Clicked="GoBack"/>
+                <ImageButton Source="delete.png"
+                                 HorizontalOptions="StartAndExpand"
+                             HeightRequest="40"
+                             BackgroundColor="Transparent"
+                             WidthRequest="40"
+                             Command="{Binding Delete}"/>
+            </FlexLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

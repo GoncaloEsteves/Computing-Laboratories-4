@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 x:Class="PGB.Pages.SaveTripPopupPage">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    
+    <ContentPage.Content>
+        <Frame BackgroundColor="White" HasShadow="True" CornerRadius="10" Margin="20,0,20,0" VerticalOptions="Center" >
+            <StackLayout Padding="5">
+                <Label Text="Name your trip" HorizontalOptions="Center" Margin="5" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                <Label Text="Trip Name" TextColor="Black" FontSize="Small"/>
+                <Entry TextColor="Black" Text="{Binding TripName}" FontSize="Small" Placeholder="Algarve 2020" />
+                
+                <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                    <Button Text="Save Trip" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" Margin="0"
+                            Command="{Binding SaveTripCommand}" TextColor="ForestGreen"/>
+                    <Button Clicked="ClosePopup" Text="Close" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" Margin="0"
+                            TextColor="ForestGreen"/>
+                </StackLayout>
+            </StackLayout>
+            
+        </Frame>
+    </ContentPage.Content>
+</pages:PopupPage>

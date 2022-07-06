@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ci1="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:viewModels="clr-namespace:PGB.ViewModels;assembly=PGB"
+             mc:Ignorable="d"
+             BackgroundColor="#151723"
+             Title="Profile"
+             x:Class="PGB.Pages.Profile">
+
+    <ContentPage.BindingContext>
+        <viewModels:ProfileViewModel />
+    </ContentPage.BindingContext>
+    
+    
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#151723" Padding="40">
+            <ci1:CircleImage  
+                    HeightRequest="90"
+                    WidthRequest="90"
+                    Source="musk.jpg"
+                    HorizontalOptions="Center"
+                    Aspect="Fill">
+            </ci1:CircleImage>
+            <Label TextColor="#4EDBA8"
+                   FontSize="17"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="StartAndExpand"
+                   Margin="0, 40, 0 ,20">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Username: " TextColor="#4EDBA8" FontFamily="{StaticResource MontserratLight}"/>
+                        <Span Text="{Binding Username}" TextColor="White" FontFamily="{StaticResource MontserratLight}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label TextColor="#4EDBA8"
+                   FontSize="17"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="StartAndExpand"
+                   Margin="0, 20, 0 ,20">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Name: " TextColor="#4EDBA8" FontFamily="{StaticResource MontserratLight}"/>
+                        <Span Text="{Binding Name}" TextColor="White" FontFamily="{StaticResource MontserratLight}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label TextColor="#4EDBA8"
+                   FontSize="17"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="StartAndExpand"
+                   Margin="0, 20, 0 ,20">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Email: " TextColor="#4EDBA8" FontFamily="{StaticResource MontserratLight}"/>
+                        <Span Text="{Binding Email}" TextColor="White" FontFamily="{StaticResource MontserratLight}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label TextColor="#4EDBA8"
+                   FontSize="17"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="StartAndExpand"
+                   Margin="0, 20, 0 ,20">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Nif: " TextColor="#4EDBA8" FontFamily="{StaticResource MontserratLight}"/>
+                        <Span Text="{Binding Nif}" TextColor="White" FontFamily="{StaticResource MontserratLight}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <FlexLayout JustifyContent="SpaceEvenly" AlignItems="Center" Direction="Row" VerticalOptions="EndAndExpand">
+                <ImageButton Source="edit.png"
+                                HorizontalOptions="StartAndExpand"
+                             HeightRequest="50"
+                             BackgroundColor="Transparent"
+                             WidthRequest="50"
+                                 Margin="0,0,20,0"
+                             Clicked="GoToEditProfile"/>
+                <ImageButton Source="credit_card.png"
+                                 HorizontalOptions="StartAndExpand"
+                             HeightRequest="50"
+                             BackgroundColor="Transparent"
+                             WidthRequest="50"
+                                 Margin="0,0,20,0"
+                             Clicked="GoToCreditCards"/>
+                <ImageButton Source="trash.png"
+                                 HorizontalOptions="StartAndExpand"
+                             HeightRequest="50"
+                             BackgroundColor="Transparent"
+                             WidthRequest="50"
+                             Command="{Binding Delete}"/>
+            </FlexLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

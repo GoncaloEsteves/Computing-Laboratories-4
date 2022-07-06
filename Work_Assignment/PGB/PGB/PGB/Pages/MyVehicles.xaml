@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:PGB.ViewModels;assembly=PGB"
+             mc:Ignorable="d"
+             Title="My Vehicles"
+             BackgroundColor="#151723"
+             x:Class="PGB.Pages.MyVehicles">
+
+    <ContentPage.BindingContext>
+        <viewModels:MyVehiclesViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding Vehicles}" IsPullToRefreshEnabled="true" x:Name="vehicles" ListView.RowHeight="100">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <ViewCell.ContextActions>
+                                <MenuItem
+                                          Command="{Binding Path=BindingContext.Favorite,Source={x:Reference Name=vehicles}}" CommandParameter="{Binding .}"
+                                          Text="Favorite"/>
+                                <MenuItem
+                                          Command="{Binding Path=BindingContext.Detailed,Source={x:Reference Name=vehicles}}" CommandParameter="{Binding .}"
+                                          Text="ShowDetails"/>
+                                <MenuItem Command="{Binding Path=BindingContext.Delete,Source={x:Reference Name=vehicles}}" CommandParameter="{Binding .}"
+                                      IsDestructive="True"
+                                      Text="Delete"/>
+                            </ViewCell.ContextActions>
+                            <StackLayout Orientation="Horizontal" Padding="0,10">
+                                <Image Source="electric_car.png"
+                                    HeightRequest="50"
+                                    WidthRequest="50"
+                                     HorizontalOptions="Start"
+                                       Margin=" 50, 0,50,0"/>
+                                <StackLayout HorizontalOptions="Center"
+                                            VerticalOptions="Center">
+                                    <Label Text="{Binding RegistrationNumber}"
+                                           FontSize="20"
+                                            TextColor="White"
+                                            FontFamily="{StaticResource MontserratLight}"/>
+                                    <Label Text="{Binding Name}"
+                                        FontSize="10"
+                                         TextColor="White"
+                                         FontFamily="{StaticResource MontserratLight}"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ImageButton Source="more.png"
+                         HorizontalOptions="Center"
+                         BackgroundColor="#151723"
+                         HeightRequest="40"
+                         WidthRequest="40"
+                         VerticalOptions="EndAndExpand" Margin="0,0,0,20"
+                         Clicked="AddVehicle"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

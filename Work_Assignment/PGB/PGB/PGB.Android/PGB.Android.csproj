@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A40D14F5-DD3E-45E9-B46C-C532D1F21CE0}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TemplateGuid>{c9e5eea5-ca05-42a1-839b-61506e0a37df}</TemplateGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>PGB.Droid</RootNamespace>
+    <AssemblyName>PGB.Android</AssemblyName>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+    <AndroidUseAapt2>true</AndroidUseAapt2>
+    <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidSupportedAbis>armeabi-v7a;x86;arm64-v8a;x86_64</AndroidSupportedAbis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidManagedSymbols>true</AndroidManagedSymbols>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Plugin.CurrentActivity" Version="2.1.0.4" />
+    <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
+    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.1.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.Browser" Version="1.2.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.CardView" Version="1.0.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4" Version="1.0.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData" Version="2.2.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.MediaRouter" Version="1.1.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.Migration" Version="1.0.6.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.968" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.3.0" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material">
+      <Version>4.7.0.968</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.1.0.1-rc3" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Maps" Version="117.0.0-preview03" />
+    <PackageReference Include="XamarinFastEntry.Behaviors">
+      <Version>1.1.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CachingNativeBitmapDescriptorFactory.cs" />
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="MainApplication.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\fontes\MontserratAlternates-Black.otf" />
+    <AndroidAsset Include="Assets\fontes\MontserratAlternates-BlackItalic.otf" />
+    <AndroidAsset Include="Assets\fontes\MontserratAlternates-Bold.otf" />
+    <AndroidAsset Include="Assets\fontes\MontserratAlternates-BoldItalic.otf" />
+    <AndroidAsset Include="Assets\fontes\MontserratAlternates-ExtraBold.otf" />
+    <AndroidAsset Include="Assets\fontes\MontserratAlternates-ExtraBoldItalic.otf" />
+    <AndroidAsset Include="Assets\fontes\MontserratAlternates-ExtraLight.otf" />
+    <AndroidAsset Include="Assets\fontes\MontserratAlternates-ExtraLightItalic.otf" />
+    <AndroidAsset Include="Assets\fontes\MontserratAlternates-Italic.otf" />
+    <AndroidAsset Include="Assets\fontes\MontserratAlternates-Light.otf" />
+    <AndroidAsset Include="Assets\fontes\MontserratAlternates-LightItalic.otf" />
+    <AndroidAsset Include="Assets\fontes\MontserratAlternates-Medium.otf" />
+    <AndroidAsset Include="Assets\fontes\MontserratAlternates-MediumItalic.otf" />
+    <AndroidAsset Include="Assets\fontes\MontserratAlternates-Regular.otf" />
+    <AndroidAsset Include="Assets\fontes\MontserratAlternates-SemiBold.otf" />
+    <AndroidAsset Include="Assets\fontes\MontserratAlternates-SemiBoldItalic.otf" />
+    <AndroidAsset Include="Assets\fontes\MontserratAlternates-Thin.otf" />
+    <AndroidAsset Include="Assets\fontes\MontserratAlternates-ThinItalic.otf" />
+    <AndroidAsset Include="Assets\fontes\Montserrat-Black.otf" />
+    <AndroidAsset Include="Assets\fontes\Montserrat-BlackItalic.otf" />
+    <AndroidAsset Include="Assets\fontes\Montserrat-Bold.otf" />
+    <AndroidAsset Include="Assets\fontes\Montserrat-BoldItalic.otf" />
+    <AndroidAsset Include="Assets\fontes\Montserrat-ExtraBold.otf" />
+    <AndroidAsset Include="Assets\fontes\Montserrat-ExtraBoldItalic.otf" />
+    <AndroidAsset Include="Assets\fontes\Montserrat-ExtraLight.otf" />
+    <AndroidAsset Include="Assets\fontes\Montserrat-ExtraLightItalic.otf" />
+    <AndroidAsset Include="Assets\fontes\Montserrat-Italic.otf" />
+    <AndroidAsset Include="Assets\fontes\Montserrat-Light.otf" />
+    <AndroidAsset Include="Assets\fontes\Montserrat-LightItalic.otf" />
+    <AndroidAsset Include="Assets\fontes\Montserrat-Medium.otf" />
+    <AndroidAsset Include="Assets\fontes\Montserrat-MediumItalic.otf" />
+    <AndroidAsset Include="Assets\fontes\Montserrat-Regular.otf" />
+    <AndroidAsset Include="Assets\fontes\Montserrat-SemiBold.otf" />
+    <AndroidAsset Include="Assets\fontes\Montserrat-SemiBoldItalic.otf" />
+    <AndroidAsset Include="Assets\fontes\Montserrat-Thin.otf" />
+    <AndroidAsset Include="Assets\fontes\Montserrat-ThinItalic.otf" />
+    <AndroidAsset Include="Assets\fontes\Proxima Nova Alt Bold.otf" />
+    <AndroidAsset Include="Assets\fontes\Proxima Nova Alt Light.otf" />
+    <AndroidAsset Include="Assets\fontes\Proxima Nova Alt Thin.otf" />
+    <AndroidAsset Include="Assets\fontes\Proxima Nova Black.otf" />
+    <AndroidAsset Include="Assets\fontes\Proxima Nova Bold.otf" />
+    <AndroidAsset Include="Assets\fontes\Proxima Nova Extrabold.otf" />
+    <AndroidAsset Include="Assets\fontes\Proxima Nova Thin.otf" />
+    <AndroidAsset Include="Assets\fontes\ProximaNova-Regular.otf" />
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\destination_pin_32.png" />
+    <AndroidResource Include="Resources\drawable\destination_pin_64.png" />
+    <AndroidResource Include="Resources\drawable\down_arrow.png" />
+    <AndroidResource Include="Resources\drawable\euro.png" />
+    <AndroidResource Include="Resources\drawable\go_trip.png" />
+    <AndroidResource Include="Resources\drawable\go_trip_v2.png" />
+    <AndroidResource Include="Resources\drawable\ic_location.png" />
+    <AndroidResource Include="Resources\drawable\ic_location_red.png" />
+    <AndroidResource Include="Resources\drawable\ic_search.png" />
+    <AndroidResource Include="Resources\drawable\more.png" />
+    <AndroidResource Include="Resources\drawable\origin_pin_32.png" />
+    <AndroidResource Include="Resources\drawable\origin_pin_64.png" />
+    <AndroidResource Include="Resources\drawable\save_trip.png" />
+    <AndroidResource Include="Resources\drawable\start_trip.png" />
+    <AndroidResource Include="Resources\drawable\up_arrow.png" />
+    <AndroidResource Include="Resources\layout\Tabbar.xml" />
+    <AndroidResource Include="Resources\layout\Toolbar.xml" />
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_location.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_location_red.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_search.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_location.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_location_red.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_search.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_location.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_location_red.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_search.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_location.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_location_red.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_search.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_location.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_location_red.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_search.png" />
+    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\mipmap-anydpi-v26\icon.xml" />
+    <AndroidResource Include="Resources\mipmap-anydpi-v26\icon_round.xml" />
+    <AndroidResource Include="Resources\mipmap-hdpi\launcher_foreground.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\launcher_foreground.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\launcher_foreground.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\launcher_foreground.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
+    <AndroidResource Include="Resources\drawable\battery.png">
+      <SubType>
+      </SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\electric_car.png">
+      <SubType>
+      </SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\forbidden.png">
+      <SubType>
+      </SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\line_chart.png">
+      <SubType>
+      </SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\play_button.png">
+      <SubType>
+      </SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\reset.png">
+      <SubType>
+      </SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\settings.png">
+      <SubType>
+      </SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\reset_2.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\settings_2.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\trip.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\cancel.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\charging_station_pin.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\clock.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\destination_pin.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\origin_pin.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\car_2.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\cancel_white.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\reset_white.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\save_trip_white.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\settings_white.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\start_trip_v2.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\go_trip_v3.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\musk.jpg">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\fast_charger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PGB\PGB.csproj">
+      <Project>{FC063331-010E-420A-8176-CC0B3555C2D2}</Project>
+      <Name>PGB</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\car.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\fast_charger_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\fast_charger_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\normal_charger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\normal_charger_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\normal_charger_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\chargers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\chargers_selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\fav_selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\favorites.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\right_arrow_profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\trips.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\trips_selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\user_selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-hdpi\pbg_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-hdpi\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-mdpi\pbg_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xhdpi\pbg_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxhdpi\pbg_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\pbg_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\fontes\SIL Open Font License.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\americanexpresslogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_amex.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_amex_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_amex_light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_chip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_cvv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_date.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_dinersclub.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_dinersclub_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_discover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_discover_light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_jcb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_mastercard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_mastercard_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_visa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_visa_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\nocards.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\fast_charger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\normal_charger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\raw\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\credit_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\trash.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+</Project>

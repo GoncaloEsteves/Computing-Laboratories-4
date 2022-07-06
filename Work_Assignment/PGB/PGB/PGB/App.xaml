@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:PGB.Converters"
+             mc:Ignorable="d"
+             x:Class="PGB.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <converters:CardNumberToImageConverter x:Key="CardConverter"
+                                                    Amex="ic_amex"
+                                                    Dinners="ic_dinersclub"
+                                                    Discover="ic_discover" 
+                                                    JCB="ic_jcb"
+                                                    MasterCard="ic_mastercard" 
+                                                    Visa="ic_visa"
+                                                    NotRecognized="nocards"/>
+
+            <converters:CardNumberToImageConverter x:Key="CardLightConverter"
+                                                    Amex="americanexpresslogo"
+                                                    Dinners="ic_dinersclub_white.png"
+                                                    Discover="ic_discover_light" 
+                                                    JCB="ic_jcb"
+                                                    MasterCard="ic_mastercard_white" 
+                                                    Visa="ic_visa_white"
+                                                    NotRecognized="ic_chip"/>
+
+            <converters:CardNumberToColorConverter x:Key="CardColorConverter"
+                                                    Amex="#3177CB"
+                                                    Dinners="#1B4F8F"
+                                                    Discover="#E9752F" 
+                                                    JCB="#9E2921"
+                                                    MasterCard="#394854" 
+                                                    Visa="#2867BA"
+                                                    NotRecognized="#75849D"/>
+            <converters:ChargerConverter            x:Key="ChargerConverter"
+                                                    Normal ="normal_charger.png"
+                                                    Fast ="fast_charger.png"/>
+            <converters:FavoriteConverter            x:Key="FavoriteConverter"
+                                                    NotFavorite ="favorites.png"
+                                                    Favorite ="fav_selected.png"/>
+            <converters:HasStationsConverter        x:Key="HasStationsConverter"
+                                                    DoesntHaveStations = 'False'
+                                                    HasStations ='True'/>
+            <Color x:Key="Primary">#E5E9EE</Color>
+            <Color x:Key="PrimaryDark">#75849D</Color>
+            <Color x:Key="Secondary">#B5BBC2</Color>
+            <Color x:Key="Accent">LightGray</Color>
+            <Color x:Key="LightColor">LightGray</Color>
+        </ResourceDictionary>
+        <OnPlatform x:TypeArguments="x:String" x:Key="MontserratLight">
+            <On Platform="Android" Value="fontes/Montserrat-Light.otf#Montserrat" />
+        </OnPlatform>
+        <OnPlatform x:TypeArguments="x:String" x:Key="MontserratBold">
+            <On Platform="Android" Value="fontes/Montserrat-Bold.otf#Montserrat" />
+        </OnPlatform>
+        <!-- Colors -->
+        <Color x:Key="PGB_Green">#4EDBA8</Color>
+        <Color x:Key="PGB_Purple">#353041</Color>
+        <Color x:Key="PGB_Dark_Blue">#151723</Color>
+        <Color x:Key="NavigationBarTextColor">White</Color>
+        <Color x:Key="NormalTextColor">Black</Color>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:PGB.ViewModels;assembly=PGB"
+             mc:Ignorable="d"
+             Title="Register"
+             BackgroundColor="#151723"
+             x:Class="PGB.Pages.Register">
+
+    <ContentPage.BindingContext>
+        <viewModels:RegisterViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content> 
+        <StackLayout>
+            <Label Text="Insert data to complete registration"
+                   TextColor="#4EDBA8"
+                   FontSize="16"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="CenterAndExpand"
+                   Margin="0, 50 , 0 ,50"/>
+            <Label Text="Username"
+                   TextColor="#4EDBA8"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="CenterAndExpand"/>
+            <Entry Placeholder="    username" PlaceholderColor="#686868" Keyboard="Chat" TextColor="#4EDBA8" FontFamily="{StaticResource MontserratLight}" VerticalOptions="Start" Text="{Binding Username}"/>
+            <Label Text="Name"
+                   TextColor="#4EDBA8"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="CenterAndExpand"/>
+            <Entry Placeholder="    name" PlaceholderColor="#686868" Keyboard="Chat" TextColor="#4EDBA8" FontFamily="{StaticResource MontserratLight}" VerticalOptions="Start" Text="{Binding Name}"/>
+            <Label Text="NIF"
+                   TextColor="#4EDBA8"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="CenterAndExpand"/>
+            <Entry Placeholder="    123456789" PlaceholderColor="#686868" Keyboard="Numeric" TextColor="#4EDBA8" FontFamily="{StaticResource MontserratLight}" VerticalOptions="Start" Text="{Binding Nif}"/>
+            <Label Text="Email"
+                   TextColor="#4EDBA8"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="CenterAndExpand"/>
+            <Entry Placeholder="    email" PlaceholderColor="#686868" Keyboard="Chat" TextColor="#4EDBA8" FontFamily="{StaticResource MontserratLight}" VerticalOptions="Start" Text="{Binding Email}"/>
+            <Label Text="Password"
+                   TextColor="#4EDBA8"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="CenterAndExpand"/>
+            <Entry IsPassword="true" Placeholder="    password" PlaceholderColor="#686868" Keyboard="Chat" TextColor="#4EDBA8" FontFamily="{StaticResource MontserratLight}" VerticalOptions="Start" Text="{Binding Password}"/>
+            <Button Text="Register"
+                    TextColor="White"
+                    BackgroundColor="#1C7059"
+                    WidthRequest="200"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    FontFamily="{StaticResource MontserratBold}"
+                    Margin="0, 10 , 0 ,20"
+                    Command="{Binding Register}"/>
+            <Button Text="Cancel"
+                    TextColor="White"
+                    BackgroundColor="#1C7059"
+                    WidthRequest="200"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    FontFamily="{StaticResource MontserratBold}"
+                    Margin="0, 0 , 0 ,50"
+                    Clicked="Cancel"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

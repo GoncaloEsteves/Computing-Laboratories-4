@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ci1="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:viewModels="clr-namespace:PGB.ViewModels;assembly=PGB"
+             mc:Ignorable="d"
+             Title="Edit profile"
+             BackgroundColor="#151723"
+             x:Class="PGB.Pages.EditProfile">
+
+    <ContentPage.BindingContext>
+        <viewModels:EditProfileViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <ci1:CircleImage  
+                    HeightRequest="90"
+                    WidthRequest="90"
+                    Source="musk.jpg"
+                    Margin="0,0,0, 30"
+                    HorizontalOptions="Center"
+                    Aspect="Fill">
+            </ci1:CircleImage>
+            <Label Text="       Password"
+                   TextColor="#4EDBA8"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="StartAndExpand"/>
+            <Entry IsPassword="true" Placeholder="    password" PlaceholderColor="#686868" Keyboard="Chat" TextColor="#4EDBA8" FontFamily="{StaticResource MontserratLight}" VerticalOptions="Start" Text="{Binding Password}" ClearButtonVisibility="WhileEditing"/>
+            <Label Text="       New Password"
+                   TextColor="#4EDBA8"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="StartAndExpand"/>
+            <Entry IsPassword="true" Placeholder="    repeat password" PlaceholderColor="#686868" Keyboard="Chat" TextColor="#4EDBA8" FontFamily="{StaticResource MontserratLight}" VerticalOptions="Start" Text="{Binding New_Password}" ClearButtonVisibility="WhileEditing"/>
+            <Label Text="       Repeat New Password"
+                   TextColor="#4EDBA8"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="StartAndExpand"/>
+            <Entry IsPassword="true" Placeholder="    new password" PlaceholderColor="#686868" Keyboard="Chat" TextColor="#4EDBA8" FontFamily="{StaticResource MontserratLight}" VerticalOptions="Start" Text="{Binding Repeat_Password}" ClearButtonVisibility="WhileEditing"/>
+            <StackLayout Orientation="Horizontal">
+                <CheckBox VerticalOptions="Start" IsChecked="{Binding SaveNewPassword}"/>
+                <Label Text="Memorize new password."
+                   TextColor="#4EDBA8"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="StartAndExpand"/>
+            </StackLayout>
+            <StackLayout VerticalOptions="EndAndExpand">
+            <Button Text="Change Password"
+                    TextColor="White"
+                    BackgroundColor="#49AF74"
+                    WidthRequest="200"
+                    Margin="20"
+                    HorizontalOptions="Center"
+                    FontFamily="{StaticResource MontserratBold}"
+                    Command="{Binding ChangePassword}"/>
+            <Button Text="Cancel"
+                    TextColor="White"
+                    BackgroundColor="#1C7059"
+                    WidthRequest="200"
+                    HorizontalOptions="Center"
+                    FontFamily="{StaticResource MontserratBold}"
+                    Margin="0,0,0, 30"
+                    Clicked="Cancel"/>
+                </StackLayout>
+          </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

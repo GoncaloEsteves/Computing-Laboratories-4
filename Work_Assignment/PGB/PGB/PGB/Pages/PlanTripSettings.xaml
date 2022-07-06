@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:behaviors="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"  
+             mc:Ignorable="d"
+             Title="Settings"
+             BackgroundColor="#151723"
+             x:Class="PGB.Pages.PlanTripSettings">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <!--                Vehicle Selection                -->
+            <Frame BackgroundColor="{StaticResource PGB_Green}" IsClippedToBounds="True" Margin="10, 5" CornerRadius="5">
+                <StackLayout>
+                <FlexLayout JustifyContent="SpaceEvenly" Direction="Row" Margin="0,0,0,10">
+                        <Image Source="electric_car.png"
+                           HeightRequest="40"
+                           WidthRequest="40" />
+                    </FlexLayout>
+                    <FlexLayout JustifyContent="SpaceEvenly" Direction="Row" Margin="0,0,0,10">
+                    <Picker x:Name="VehiclesPicker" IsVisible="False"
+                                    SelectedIndexChanged="VehicleList_OnSelectedIndexChanged"
+                                    ItemsSource="{Binding UserVehiclesRegistrationNumbers, Mode=TwoWay}"
+                                    SelectedItem="{Binding SelectedVehicle, Mode=TwoWay}" />
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="down_arrow.png"
+                           HeightRequest="20"
+                           WidthRequest="20"/>
+                            <Label x:Name="PickerLabel" Text="Click here to select vehicle"
+                                   FontSize="12" FontFamily="{StaticResource MontserratBold}" HorizontalOptions="Center">
+                                    <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="PickerLabel_OnTapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            </StackLayout>
+                        </FlexLayout>
+                        <FlexLayout JustifyContent="SpaceEvenly" Direction="Row" IsVisible="{Binding HasFavorite, Mode=TwoWay}" Margin="0,0,0,10">
+                            <Label Text="Use Favorite" FontSize="12" FontFamily="{StaticResource MontserratLight}" />
+                            <Switch  x:Name="useFavoriteVehicleSwitch" ThumbColor="White" OnColor="{StaticResource PGB_Dark_Blue}">
+                                <Switch.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding FavoriteVehicleSelectedCommand, Mode=TwoWay}" />
+                                </Switch.Behaviors>
+                            </Switch>
+                        </FlexLayout>
+                    </StackLayout>
+            </Frame>
+            <!--                SoC Selection                -->
+            <Frame BackgroundColor="{StaticResource PGB_Green}" IsClippedToBounds="True" Margin="10, 5" CornerRadius="5">
+                    <StackLayout>
+                        <FlexLayout JustifyContent="SpaceEvenly" Direction="Row" Margin="0,0,0,10">
+                        <Image Source="battery.png"
+                           HorizontalOptions="Center"
+                           HeightRequest="40"
+                           WidthRequest="40"/>
+                    </FlexLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Departure SoC(%):"
+                           FontSize="15"
+                               VerticalOptions="Center"
+                               HorizontalOptions="StartAndExpand"
+                           FontFamily="{StaticResource MontserratLight}" />
+                            <Editor Text="{Binding InitialSoc, Mode=TwoWay}" MaxLength="3" Placeholder="90%" Keyboard="Numeric" BackgroundColor="White" />
+                    </StackLayout>
+                    </StackLayout>
+                </Frame>
+            <!--                Consumption Selection                -->
+            <Frame BackgroundColor="{StaticResource PGB_Green}" IsClippedToBounds="True" Margin="10, 5" CornerRadius="5">
+                    <StackLayout>
+                        <FlexLayout JustifyContent="SpaceEvenly" Direction="Row" Margin="0,0,0,10">
+                            <Image Source="line_chart.png"
+                           HorizontalOptions="Center"
+                           HeightRequest="40"
+                           WidthRequest="40"/>
+                        </FlexLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Reference Consumption(Wh/Km):"
+                                FontSize="15"
+                               VerticalOptions="Center"
+                               HorizontalOptions="StartAndExpand"
+                                FontFamily="{StaticResource MontserratLight}" />
+                            <Editor Text="{Binding Consumption, Mode=TwoWay}" MaxLength="3" Placeholder="220" Keyboard="Numeric" BackgroundColor="White" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            <!--                Avoid on Route Selection                -->
+            <Frame BackgroundColor="{StaticResource PGB_Green}" IsClippedToBounds="True" Margin="10, 5" CornerRadius="5">
+                <StackLayout>
+                    <FlexLayout JustifyContent="SpaceEvenly" Direction="Row">
+                            <Image Source="forbidden.png"
+                           HorizontalOptions="Center"
+                           HeightRequest="40"
+                           WidthRequest="40"/>
+                        </FlexLayout>
+                    <Grid RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Avoid Tolls" FontSize="12" FontFamily="{StaticResource MontserratLight}" Grid.Row="0" Grid.Column="0" />
+                        <Switch x:Name="avoidTolls" IsToggled="{Binding AvoidTollsToggled, Mode=OneWayToSource}" ThumbColor="White" OnColor="{StaticResource PGB_Dark_Blue}" Grid.Row="0" Grid.Column="1"/>
+                        <Label Text="Avoid Highways" FontSize="12" FontFamily="{StaticResource MontserratLight}" Grid.Row="1" Grid.Column="0"/>
+                        <Switch x:Name="avoidHighways" IsToggled="{Binding AvoidHighwaysToggled, Mode=OneWayToSource}" ThumbColor="White" OnColor="{StaticResource PGB_Dark_Blue}" Grid.Row="1" Grid.Column="1"/>
+                        <Label Text="Avoid Ferries" FontSize="12" FontFamily="{StaticResource MontserratLight}" Grid.Row="2" Grid.Column="0"/>
+                        <Switch  x:Name="avoidFerries" IsToggled="{Binding AvoidFerriesToggled, Mode=OneWayToSource}" ThumbColor="White" OnColor="{StaticResource PGB_Dark_Blue}" Grid.Row="2" Grid.Column="1"/>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+            <!--                Quadrado                -->
+                <StackLayout TranslationY="200" Margin="20,30,30,30" BackgroundColor="Blue"></StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

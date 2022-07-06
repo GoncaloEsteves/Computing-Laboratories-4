@@ -1,0 +1,2118 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "PlugGoBeyond",
+    "description" : "Rest API of the mobile app PlugGoBeyond of the project course LI IV in the program Mestrado Integrado em Engenharia Informática",
+    "termsOfService" : "http://swagger.io/terms",
+    "contact" : {
+      "email" : "a34900/a82888/a85731/a86618/a89982@alunos.uminho.pt"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version" : "1.0.0"
+  },
+  "externalDocs" : {
+    "description" : "Find out more about Swagger",
+    "url" : "http://swagger.io"
+  },
+  "servers" : [ {
+    "url" : "/"
+  } ],
+  "security" : [ {
+    "bearerAuth" : [ ]
+  } ],
+  "tags" : [ {
+    "name" : "users",
+    "description" : "Operations in the users."
+  }, {
+    "name" : "vehicles",
+    "description" : "Operations in the vehicles."
+  }, {
+    "name" : "trips",
+    "description" : "Operations in the trips."
+  }, {
+    "name" : "chargingStations",
+    "description" : "Operations in the charging stations."
+  }, {
+    "name" : "vehicleModels",
+    "description" : "Operations in the models of the vehicles."
+  }, {
+    "name" : "stationWithoutValidation",
+    "description" : "Operations in the charging stations that were not validated by the system yet."
+  } ],
+  "paths" : {
+    "/users" : {
+      "get" : {
+        "tags" : [ "users" ],
+        "summary" : "List all registered users.",
+        "operationId" : "findUsers",
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/User"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error in the operation."
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "users" ],
+        "summary" : "Add a new user to the system.",
+        "operationId" : "addUser",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/User"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success."
+          },
+          "400" : {
+            "description" : "Invalid parameter."
+          }
+        }
+      }
+    },
+    "/users/{username}" : {
+      "get" : {
+        "tags" : [ "users" ],
+        "summary" : "Find user by a given username.",
+        "description" : "Returns only the user with that username.",
+        "operationId" : "getUserByUsername",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "path",
+          "description" : "Username of the user.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid username."
+          },
+          "404" : {
+            "description" : "User not found."
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "users" ],
+        "summary" : "Update a user.",
+        "operationId" : "updateUser",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "path",
+          "description" : "Username id that needs to be updated.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Updates the user.",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/User"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "400" : {
+            "description" : "Invalid username."
+          },
+          "404" : {
+            "description" : "User not found."
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "users" ],
+        "summary" : "Removes a user.",
+        "operationId" : "deleteUser",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "path",
+          "description" : "Username of the user to be removed from the system.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid username."
+          },
+          "404" : {
+            "description" : "User not found."
+          }
+        }
+      }
+    },
+    "/users/{username}/manage/password" : {
+      "put" : {
+        "tags" : [ "users" ],
+        "summary" : "Update user password.",
+        "operationId" : "updatePassword",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "path",
+          "description" : "Username id that wants to update password.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ChangePassword"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "400" : {
+            "description" : "Invalid username."
+          },
+          "404" : {
+            "description" : "User not found."
+          }
+        }
+      }
+    },
+    "/users/{username}/manage/creditCards" : {
+      "get" : {
+        "tags" : [ "users" ],
+        "summary" : "Get all credit cards from a user.",
+        "operationId" : "getCreditCard",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "path",
+          "description" : "Username id to get all credit cards.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/CreditCard"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error in the operation."
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "users" ],
+        "summary" : "Add a new credit card to a user.",
+        "operationId" : "addCreditCard",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "path",
+          "description" : "Username id that wants to add a credit card.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreditCard"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success."
+          },
+          "400" : {
+            "description" : "Invalid parameter."
+          }
+        }
+      }
+    },
+    "/users/{username}/manage/creditCards/{creditCardNr}" : {
+      "get" : {
+        "tags" : [ "users" ],
+        "summary" : "Get a credit cards from a user.",
+        "operationId" : "getOneCreditCard",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "path",
+          "description" : "Username id to get one credit card.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "creditCardNr",
+          "in" : "path",
+          "description" : "Credit card number needs to be found.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CreditCard"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error in the operation."
+          },
+          "404" : {
+            "description" : "Card not found."
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "users" ],
+        "summary" : "Removes a given credit card from a user.",
+        "operationId" : "deleteCreditCard",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "path",
+          "description" : "Username of the user that want to delete the credit card.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "creditCardNr",
+          "in" : "path",
+          "description" : "Credit card number needs to be removed from the user.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Invalid id."
+          },
+          "404" : {
+            "description" : "User not found."
+          }
+        }
+      }
+    },
+    "/users/{username}/manage/favorites" : {
+      "get" : {
+        "tags" : [ "users" ],
+        "summary" : "List all favorites charging stations of a user.",
+        "description" : "Returns the favorites charging stations of a given user.",
+        "operationId" : "getUserFavChargingStations",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "path",
+          "description" : "Username of the user.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid username."
+          },
+          "404" : {
+            "description" : "User not found."
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "users" ],
+        "summary" : "Add a new favorite charging station to the user.",
+        "operationId" : "addFavChargingStation",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "path",
+          "description" : "Username id that wants to add a new charging station.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "The id of the charging station to be added to the favorites of the user.",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/FavoriteStations"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success."
+          },
+          "400" : {
+            "description" : "Invalid parameter."
+          }
+        }
+      }
+    },
+    "/users/{username}/manage/favorites/{chargingStationId}" : {
+      "delete" : {
+        "tags" : [ "users" ],
+        "summary" : "Delete a favorite charging station of the user.",
+        "operationId" : "deleteFavoriteStation",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "path",
+          "description" : "Username id that one of his favorite stations will be deleted.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "chargingStationId",
+          "in" : "path",
+          "description" : "The id of the charging station to be deleted of the favorites of the user.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "No Content."
+          }
+        }
+      }
+    },
+    "/users/{username}/manage/trips" : {
+      "get" : {
+        "tags" : [ "users" ],
+        "summary" : "Get all the trips made by a user.",
+        "operationId" : "getUserTrips",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "path",
+          "description" : "Username id that wants to get the trips.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Trip"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error during the operation."
+          }
+        }
+      }
+    },
+    "/users/{username}/manage/vehicles" : {
+      "get" : {
+        "tags" : [ "users" ],
+        "summary" : "Get all vehicles of a given user.",
+        "operationId" : "getUserVehicles",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "path",
+          "description" : "Username id that wants to get the vehicles.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Vehicle"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error during the operation."
+          }
+        }
+      }
+    },
+    "/users/login" : {
+      "post" : {
+        "tags" : [ "users" ],
+        "summary" : "Login a user into the system.",
+        "operationId" : "loginUser",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/LoginInfo"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "headers" : {
+              "X-Rate-Limit" : {
+                "description" : "Calls per hour allowed by the user.",
+                "style" : "simple",
+                "explode" : false,
+                "schema" : {
+                  "type" : "integer",
+                  "format" : "int32"
+                }
+              },
+              "X-Expires-After" : {
+                "description" : "Date in UTC when token expires.",
+                "style" : "simple",
+                "explode" : false,
+                "schema" : {
+                  "type" : "string",
+                  "format" : "date-time"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string",
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid username or password."
+          }
+        }
+      }
+    },
+    "/users/logout" : {
+      "delete" : {
+        "tags" : [ "users" ],
+        "summary" : "Quit session of the user.",
+        "operationId" : "logoutUser",
+        "parameters" : [ ],
+        "responses" : {
+          "default" : {
+            "description" : "Success."
+          }
+        }
+      }
+    },
+    "/trips" : {
+      "get" : {
+        "tags" : [ "trips" ],
+        "summary" : "List all trips.",
+        "operationId" : "findTrips",
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Trip"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error during the operation."
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "trips" ],
+        "summary" : "Add a trip into the system.",
+        "operationId" : "addTrip",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/TripInfo"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success."
+          },
+          "400" : {
+            "description" : "Invalid parameter."
+          }
+        }
+      }
+    },
+    "/trips/filterByIds" : {
+      "get" : {
+        "tags" : [ "trips" ],
+        "summary" : "Find all trips by the ids given.",
+        "description" : "Multiple trips can be requested to be given. It's only required that they have a comma token to separate them.",
+        "operationId" : "findTripsByIds",
+        "parameters" : [ {
+          "name" : "ids",
+          "in" : "query",
+          "description" : "Ids of the trips.",
+          "required" : true,
+          "style" : "form",
+          "explode" : false,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "integer",
+              "format" : "int32"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Trip"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid ids."
+          }
+        }
+      }
+    },
+    "/trips/{tripId}" : {
+      "get" : {
+        "tags" : [ "trips" ],
+        "summary" : "Find a trip by a given ID.",
+        "description" : "Returns a trip.",
+        "operationId" : "getTripById",
+        "parameters" : [ {
+          "name" : "tripId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Trip"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid id."
+          },
+          "404" : {
+            "description" : "Trip not found."
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "trips" ],
+        "summary" : "Update a trip.",
+        "operationId" : "updateTrip",
+        "parameters" : [ {
+          "name" : "tripId",
+          "in" : "path",
+          "description" : "Trip id that needs to be updated.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Trip"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "400" : {
+            "description" : "Invalid id."
+          },
+          "404" : {
+            "description" : "Trip not found."
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "trips" ],
+        "summary" : "Removes a trip.",
+        "operationId" : "deleteTrip",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "query",
+          "description" : "Username of the user that want to delete the trip.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "tripId",
+          "in" : "path",
+          "description" : "Trip id that needs to be removed from the system.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Invalid id."
+          },
+          "404" : {
+            "description" : "Trip not found."
+          }
+        }
+      }
+    },
+    "/chargingStations" : {
+      "get" : {
+        "tags" : [ "chargingStations" ],
+        "summary" : "List all charging stations.",
+        "operationId" : "findChargingStation",
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ChargingStation"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error during operation."
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "chargingStations" ],
+        "summary" : "Add a new charging station into the system.",
+        "operationId" : "addChargingStation",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ChargingStation"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success."
+          },
+          "400" : {
+            "description" : "Invalid parameter."
+          }
+        }
+      }
+    },
+    "/chargingStations/filterByIds" : {
+      "get" : {
+        "tags" : [ "chargingStations" ],
+        "summary" : "Find all charging stations by the ids given.",
+        "description" : "Multiple charging stations can be requested to be given. It's only required that they have a comma token to separate them.",
+        "operationId" : "findChargingStationsByIds",
+        "parameters" : [ {
+          "name" : "ids",
+          "in" : "query",
+          "description" : "Ids of the charging stations.",
+          "required" : true,
+          "style" : "form",
+          "explode" : false,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ChargingStation"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid ids."
+          }
+        }
+      }
+    },
+    "/chargingStations/{chargingStationId}" : {
+      "get" : {
+        "tags" : [ "chargingStations" ],
+        "summary" : "Find a charging station by a given id.",
+        "description" : "Returns the charging station that matches the id.",
+        "operationId" : "getStationById",
+        "parameters" : [ {
+          "name" : "chargingStationId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ChargingStation"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid id."
+          },
+          "404" : {
+            "description" : "Charging station not found."
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "chargingStations" ],
+        "summary" : "Updates a charging station.",
+        "operationId" : "updateStation",
+        "parameters" : [ {
+          "name" : "chargingStationId",
+          "in" : "path",
+          "description" : "Charging station id that needs to be updated.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ChargingStation"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "400" : {
+            "description" : "Invalid id."
+          },
+          "404" : {
+            "description" : "Charging station not found."
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "chargingStations" ],
+        "summary" : "Removes a charging station.",
+        "operationId" : "deleteChargingStation",
+        "parameters" : [ {
+          "name" : "chargingStationId",
+          "in" : "path",
+          "description" : "Charging station id that needs to be removed.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Invalid id"
+          },
+          "404" : {
+            "description" : "Charging station not found."
+          }
+        }
+      }
+    },
+    "/chargingStations/findByStatus" : {
+      "get" : {
+        "tags" : [ "chargingStations" ],
+        "summary" : "Find all charging stations by a given status.",
+        "description" : "Multiple status can be requested to be filted. It's only required that they have a comma token to separate them.",
+        "operationId" : "findChargingStationByStatus",
+        "parameters" : [ {
+          "name" : "status",
+          "in" : "query",
+          "description" : "Status to filter the charging stations.",
+          "required" : true,
+          "style" : "form",
+          "explode" : false,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "enum" : [ "UNKNOWN", "AVAILABLE", "NOT_AVAILABLE", "IN_USE", "UNDER_CONSTRUCTION" ]
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ChargingStation"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid status."
+          }
+        }
+      }
+    },
+    "/chargingStations/findByFastConnector" : {
+      "get" : {
+        "tags" : [ "chargingStations" ],
+        "summary" : "Find all charging stations with a fast connector.",
+        "operationId" : "findFastChargingStations",
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ChargingStation"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error during operation"
+          }
+        }
+      }
+    },
+    "/vehicles" : {
+      "get" : {
+        "tags" : [ "vehicles" ],
+        "summary" : "List all vehicles.",
+        "operationId" : "findVehicles",
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Vehicle"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Operation error."
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "vehicles" ],
+        "summary" : "Add a vehicle into the system.",
+        "operationId" : "addVehicle",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/VehicleInfo"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success."
+          },
+          "400" : {
+            "description" : "Invalid Parameter."
+          }
+        }
+      }
+    },
+    "/vehicles/filterByIds" : {
+      "get" : {
+        "tags" : [ "vehicles" ],
+        "summary" : "Find all trips by the ids given.",
+        "description" : "Multiple vehicles can be requested to be given. It's only required that they have a comma token to separate them.",
+        "operationId" : "findVehiclesByIds",
+        "parameters" : [ {
+          "name" : "ids",
+          "in" : "query",
+          "description" : "Ids of the vehicles.",
+          "required" : true,
+          "style" : "form",
+          "explode" : false,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Vehicle"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid ids."
+          }
+        }
+      }
+    },
+    "/vehicles/{registrationNr}" : {
+      "get" : {
+        "tags" : [ "vehicles" ],
+        "summary" : "Find a vehicle by it's registration number.",
+        "description" : "Returns the vehicle",
+        "operationId" : "getVehicleByRegsNr",
+        "parameters" : [ {
+          "name" : "registrationNr",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Vehicle"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid registration number."
+          },
+          "404" : {
+            "description" : "Vehicle not found."
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "vehicles" ],
+        "summary" : "Updates a vehicle.",
+        "operationId" : "updateVehicle",
+        "parameters" : [ {
+          "name" : "registrationNr",
+          "in" : "path",
+          "description" : "Registration number of the vehicle that needs to be updated.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Vehicle"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "400" : {
+            "description" : "Invalid registration number."
+          },
+          "404" : {
+            "description" : "Vehicle not found."
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "vehicles" ],
+        "summary" : "Removes a vehicle.",
+        "operationId" : "deleteVehicle",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "query",
+          "description" : "Username of the user that want to delete the vehicle.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "registrationNr",
+          "in" : "path",
+          "description" : "Registration number of the vehicle that needs to be removed.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Invalid registration number."
+          },
+          "404" : {
+            "description" : "Vehicle not found."
+          }
+        }
+      }
+    },
+    "/vehicles/{registrationNr}/getTypeCode" : {
+      "get" : {
+        "tags" : [ "vehicles" ],
+        "summary" : "Find a vehicle's type code by it's registration number.",
+        "description" : "Returns the vehicle's type code.",
+        "operationId" : "getVehicleTypeCode",
+        "parameters" : [ {
+          "name" : "registrationNr",
+          "in" : "path",
+          "description" : "Registration number of the vehicle that we want to extract type code.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string",
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid registration number."
+          },
+          "404" : {
+            "description" : "Vehicle not found."
+          }
+        }
+      }
+    },
+    "/vehicles/{registrationNr}/putConsumption" : {
+      "put" : {
+        "tags" : [ "vehicles" ],
+        "summary" : "Updates the last consumption of a vehicle.",
+        "description" : "Returns success if the operation is completed.",
+        "operationId" : "updateLastConsumption",
+        "parameters" : [ {
+          "name" : "registrationNr",
+          "in" : "path",
+          "description" : "Registration number of the vehicle that needs to be updated.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateConsumption"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success."
+          },
+          "400" : {
+            "description" : "Invalid registration number."
+          },
+          "404" : {
+            "description" : "Vehicle not found."
+          }
+        }
+      }
+    },
+    "/vehicleModels" : {
+      "get" : {
+        "tags" : [ "vehicleModels" ],
+        "summary" : "List all vehiclesModels.",
+        "description" : "Find all the models of eletric vehicles.",
+        "operationId" : "findVehiclesModels",
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/VehicleModels"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Operation error."
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "vehicleModels" ],
+        "summary" : "Add a vehicle's model into the system.",
+        "description" : "Inserts a new model into the system.",
+        "operationId" : "addVehicleModel",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/VehicleModels"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success."
+          },
+          "400" : {
+            "description" : "Invalid Parameter."
+          }
+        }
+      }
+    },
+    "/vehicleModels/{typeCode}" : {
+      "get" : {
+        "tags" : [ "vehicleModels" ],
+        "summary" : "Finds a model of a vehicle with a certain typeCode.",
+        "description" : "Returns the model that has a specific typeCode.",
+        "operationId" : "findVehicleModel",
+        "parameters" : [ {
+          "name" : "typeCode",
+          "in" : "path",
+          "description" : "TypeCode of the model that we want to find.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/VehicleModels"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid TypeCode."
+          },
+          "404" : {
+            "description" : "Model of vehicle not found."
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "vehicleModels" ],
+        "summary" : "Updates a vehicle's model.",
+        "operationId" : "updateVehicleModel",
+        "parameters" : [ {
+          "name" : "typeCode",
+          "in" : "path",
+          "description" : "TypeCode of the model that needs to be updated.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/VehicleModels"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "400" : {
+            "description" : "Invalid TypeCode."
+          },
+          "404" : {
+            "description" : "Model of Vehicle not found."
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "vehicleModels" ],
+        "summary" : "Removes a vehicle.",
+        "description" : "Deletes a model.",
+        "operationId" : "deleteVehicleModel",
+        "parameters" : [ {
+          "name" : "typeCode",
+          "in" : "path",
+          "description" : "typeCode of the model that needs to be removed.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Invalid typeCode."
+          },
+          "404" : {
+            "description" : "TypeCode not found."
+          }
+        }
+      }
+    },
+    "/chargingStationWaitingValidation" : {
+      "get" : {
+        "tags" : [ "stationWithoutValidation" ],
+        "summary" : "List all Charging Stations Waiting Validation.",
+        "description" : "Returns all stations that were not yet considered valid by the system.",
+        "operationId" : "findStationWaitingValidation",
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ChargingStationWaitingValidation"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Operation error."
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "stationWithoutValidation" ],
+        "summary" : "Add a Stations Waiting Validation into the system.",
+        "description" : "Inserts a new station waiting validation.",
+        "operationId" : "addStationWithoutValidation",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ChargingStationWaitingValidation"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success."
+          },
+          "400" : {
+            "description" : "Invalid Parameter."
+          }
+        }
+      }
+    },
+    "/chargingStationWaitingValidation/{nameChargingStation}" : {
+      "get" : {
+        "tags" : [ "stationWithoutValidation" ],
+        "summary" : "Finds a station by it's name.",
+        "description" : "Given a certain valid name, a station will be returned",
+        "operationId" : "findStationWithoutValidationByName",
+        "parameters" : [ {
+          "name" : "nameChargingStation",
+          "in" : "path",
+          "description" : "Name of the chargingStation that we want to find.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ChargingStationWaitingValidation"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Operation error."
+          },
+          "404" : {
+            "description" : "Name of station without validation not found."
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "stationWithoutValidation" ],
+        "summary" : "Updates a Station without validation.",
+        "description" : "Given a certain valid name, a station will be updated.",
+        "operationId" : "updateStationWithoutValidation",
+        "parameters" : [ {
+          "name" : "nameChargingStation",
+          "in" : "path",
+          "description" : "name of the station that needs to be updated.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ChargingStationWaitingValidation"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "400" : {
+            "description" : "Invalid name of the station."
+          },
+          "404" : {
+            "description" : "Name of Station not found."
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "stationWithoutValidation" ],
+        "summary" : "Removes a station without validation.",
+        "description" : "Deletes a specific station.",
+        "operationId" : "deleteStationWithoutValidation",
+        "parameters" : [ {
+          "name" : "nameChargingStation",
+          "in" : "path",
+          "description" : "name of the station that needs to be removed.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Invalid name of the station."
+          },
+          "404" : {
+            "description" : "Name of station without validation not found."
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "CreditCard" : {
+        "type" : "object",
+        "properties" : {
+          "cardType" : {
+            "type" : "string"
+          },
+          "cardNumber" : {
+            "type" : "string"
+          },
+          "expireDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "cvv" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        },
+        "example" : {
+          "cvv" : 0,
+          "cardType" : "cardType",
+          "expireDate" : "2000-01-23T04:56:07.000+00:00",
+          "cardNumber" : "cardNumber"
+        }
+      },
+      "User" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "username" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "nif" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          },
+          "creditCards" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CreditCard"
+            }
+          },
+          "favoriteChargingStations" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "trips" : {
+            "type" : "array",
+            "items" : {
+              "type" : "integer",
+              "format" : "int32"
+            }
+          },
+          "vehiclesIds" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        },
+        "example" : {
+          "password" : "password",
+          "creditCards" : [ {
+            "cvv" : 0,
+            "cardType" : "cardType",
+            "expireDate" : "2000-01-23T04:56:07.000+00:00",
+            "cardNumber" : "cardNumber"
+          }, {
+            "cvv" : 0,
+            "cardType" : "cardType",
+            "expireDate" : "2000-01-23T04:56:07.000+00:00",
+            "cardNumber" : "cardNumber"
+          } ],
+          "vehiclesIds" : [ "vehiclesIds", "vehiclesIds" ],
+          "trips" : [ 6, 6 ],
+          "name" : "name",
+          "nif" : "nif",
+          "email" : "email",
+          "favoriteChargingStations" : [ "favoriteChargingStations", "favoriteChargingStations" ],
+          "username" : "username"
+        }
+      },
+      "Connector" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Status of the connector",
+            "enum" : [ "UNKNOWN", "AVAILABLE", "NOT_AVAILABLE", "IN_USE", "UNDER_CONSTRUCTION" ]
+          },
+          "powerKw" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "amps" : {
+            "type" : "number",
+            "format" : "int32"
+          },
+          "voltage" : {
+            "type" : "number",
+            "format" : "int32"
+          },
+          "phase" : {
+            "type" : "string",
+            "description" : "Phase type of the connector",
+            "enum" : [ "UNKNOWN", "SINGLE_PHASE_AC", "THREE_PHASE_AC", "DC" ]
+          },
+          "connectorType" : {
+            "type" : "string",
+            "description" : "Type of connector",
+            "enum" : [ "UNKNOWN", "CHADEMO", "CCS", "TYPE2", "TYPE2_TETHERED", "TESLA_DESTINATION_CHARGER", "TESLA_SUPERCHARGER" ]
+          },
+          "rate" : {
+            "type" : "string",
+            "description" : "Charging rate of the connector",
+            "enum" : [ "NORMAL", "FAST" ]
+          }
+        },
+        "example" : {
+          "phase" : "UNKNOWN",
+          "powerKw" : 5.637376656633329,
+          "amps" : 2.3021358869347655,
+          "connectorType" : "UNKNOWN",
+          "rate" : "NORMAL",
+          "id" : "id",
+          "status" : "UNKNOWN",
+          "voltage" : 7.061401241503109
+        }
+      },
+      "Position" : {
+        "type" : "object",
+        "properties" : {
+          "latitude" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "longitude" : {
+            "type" : "number",
+            "format" : "double"
+          }
+        },
+        "example" : {
+          "latitude" : 6.027456183070403,
+          "longitude" : 1.4658129805029452
+        }
+      },
+      "ChargingStationOperator" : {
+        "type" : "object",
+        "properties" : {
+          "operatorName" : {
+            "type" : "string"
+          },
+          "websiteURL" : {
+            "type" : "string",
+            "format" : "uri"
+          }
+        },
+        "example" : {
+          "websiteURL" : "http://example.com/aeiou",
+          "operatorName" : "operatorName"
+        }
+      },
+      "ChargingStation" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "location" : {
+            "$ref" : "#/components/schemas/Position"
+          },
+          "chargingStationOperator" : {
+            "$ref" : "#/components/schemas/ChargingStationOperator"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Status of the charging station",
+            "enum" : [ "UNKNOWN", "AVAILABLE", "NOT_AVAILABLE", "IN_USE", "UNDER_CONSTRUCTION" ]
+          },
+          "priceByActivation" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "priceByMinute" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "priceByKwh" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "waitingToCharge" : {
+            "type" : "number",
+            "format" : "int32"
+          },
+          "chargingSockets" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Connector"
+            }
+          }
+        },
+        "example" : {
+          "chargingSockets" : [ {
+            "phase" : "UNKNOWN",
+            "powerKw" : 5.637376656633329,
+            "amps" : 2.3021358869347655,
+            "connectorType" : "UNKNOWN",
+            "rate" : "NORMAL",
+            "id" : "id",
+            "status" : "UNKNOWN",
+            "voltage" : 7.061401241503109
+          }, {
+            "phase" : "UNKNOWN",
+            "powerKw" : 5.637376656633329,
+            "amps" : 2.3021358869347655,
+            "connectorType" : "UNKNOWN",
+            "rate" : "NORMAL",
+            "id" : "id",
+            "status" : "UNKNOWN",
+            "voltage" : 7.061401241503109
+          } ],
+          "chargingStationOperator" : {
+            "websiteURL" : "http://example.com/aeiou",
+            "operatorName" : "operatorName"
+          },
+          "priceByMinute" : 6.027456183070403,
+          "waitingToCharge" : 5.962133916683182,
+          "location" : {
+            "latitude" : 6.027456183070403,
+            "longitude" : 1.4658129805029452
+          },
+          "priceByActivation" : 0.8008281904610115,
+          "id" : "id",
+          "priceByKwh" : 1.4658129805029452,
+          "status" : "UNKNOWN"
+        }
+      },
+      "ChargingStationWaitingValidation" : {
+        "type" : "object",
+        "properties" : {
+          "nameChargingStation" : {
+            "type" : "string"
+          },
+          "street" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "locationType" : {
+            "type" : "string"
+          },
+          "accessType" : {
+            "type" : "string"
+          },
+          "restritions" : {
+            "type" : "string"
+          },
+          "aditionalInfo" : {
+            "type" : "string"
+          }
+        },
+        "example" : {
+          "accessType" : "accessType",
+          "nameChargingStation" : "nameChargingStation",
+          "city" : "city",
+          "street" : "street",
+          "locationType" : "locationType",
+          "aditionalInfo" : "aditionalInfo",
+          "restritions" : "restritions"
+        }
+      },
+      "Vehicle" : {
+        "type" : "object",
+        "properties" : {
+          "registrationNumber" : {
+            "type" : "string"
+          },
+          "typeCode" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "lastConsumptionReport" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "username" : {
+            "type" : "string"
+          }
+        },
+        "example" : {
+          "lastConsumptionReport" : 0.8008281904610115,
+          "registrationNumber" : "registrationNumber",
+          "name" : "name",
+          "typeCode" : "typeCode",
+          "username" : "username"
+        }
+      },
+      "VehicleModels" : {
+        "type" : "object",
+        "properties" : {
+          "typeCode" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "levelTwoCharges" : {
+            "type" : "string"
+          },
+          "fastCharges" : {
+            "type" : "string"
+          }
+        },
+        "example" : {
+          "name" : "name",
+          "fastCharges" : "fastCharges",
+          "typeCode" : "typeCode",
+          "levelTwoCharges" : "levelTwoCharges"
+        }
+      },
+      "Trip" : {
+        "type" : "object",
+        "properties" : {
+          "tripId" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "tripName" : {
+            "type" : "string"
+          },
+          "vehicleRegistrationNumber" : {
+            "type" : "string"
+          },
+          "origin" : {
+            "$ref" : "#/components/schemas/Position"
+          },
+          "destination" : {
+            "$ref" : "#/components/schemas/Position"
+          },
+          "duration" : {
+            "type" : "string",
+            "format" : "time"
+          },
+          "cost" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "date" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "usedChargingStations" : {
+            "type" : "array",
+            "description" : "Array that contains all of the charging stations id's used during the trip",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        },
+        "example" : {
+          "vehicleRegistrationNumber" : "vehicleRegistrationNumber",
+          "duration" : "duration",
+          "date" : "2000-01-23T04:56:07.000+00:00",
+          "cost" : 5.962133916683182,
+          "usedChargingStations" : [ "usedChargingStations", "usedChargingStations" ],
+          "origin" : {
+            "latitude" : 6.027456183070403,
+            "longitude" : 1.4658129805029452
+          },
+          "tripId" : 0,
+          "tripName" : "tripName"
+        }
+      },
+      "LoginInfo" : {
+        "type" : "object",
+        "properties" : {
+          "username" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ChangePassword" : {
+        "type" : "object",
+        "properties" : {
+          "currentPassword" : {
+            "type" : "string"
+          },
+          "newPassword" : {
+            "type" : "string"
+          }
+        }
+      },
+      "FavoriteStations" : {
+        "type" : "object",
+        "properties" : {
+          "chargingStationId" : {
+            "type" : "string"
+          }
+        }
+      },
+      "TripInfo" : {
+        "type" : "object",
+        "properties" : {
+          "username" : {
+            "type" : "string",
+            "description" : "Username of the user that make the trip."
+          },
+          "trip" : {
+            "$ref" : "#/components/schemas/Trip"
+          }
+        }
+      },
+      "VehicleInfo" : {
+        "type" : "object",
+        "properties" : {
+          "username" : {
+            "type" : "string",
+            "description" : "Username of owner of the vehicle."
+          },
+          "vehicleInfo" : {
+            "$ref" : "#/components/schemas/Vehicle"
+          }
+        }
+      },
+      "UpdateConsumption" : {
+        "type" : "object",
+        "properties" : {
+          "consumption" : {
+            "type" : "string",
+            "description" : "consumption to be update."
+          }
+        }
+      }
+    },
+    "securitySchemes" : {
+      "bearerAuth" : {
+        "type" : "http",
+        "scheme" : "bearer",
+        "bearerFormat" : "JWT"
+      }
+    }
+  }
+}

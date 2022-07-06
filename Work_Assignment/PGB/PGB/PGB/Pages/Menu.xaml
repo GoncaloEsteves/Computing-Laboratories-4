@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ci1="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:viewModels="clr-namespace:PGB.ViewModels;assembly=PGB"
+             mc:Ignorable="d"
+             BackgroundColor="#151723"
+             x:Class="PGB.Pages.Menu">
+    
+    <ContentPage.BindingContext>
+        <viewModels:MenuViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#4EDBA8">
+            <StackLayout BackgroundColor="#353041" Padding="20">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="GoToProfile"
+                                          NumberOfTapsRequired="1"/>
+                </StackLayout.GestureRecognizers>
+                <ci1:CircleImage  
+                    HeightRequest="80"
+                    WidthRequest="80"
+                    Source="musk.jpg"
+                    HorizontalOptions="Center"
+                    Aspect="Fill" />
+                <Label Text="{Binding Username}" FontFamily="{StaticResource MontserratLight}" FontSize="20" TextColor="White" HorizontalOptions="Center"/>
+                <Label Text="{Binding Model}" FontFamily="{StaticResource MontserratBold}" FontSize="15" TextColor="White" HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
+            <Button Text="Map"
+                    TextColor="#3F16AB"
+                    BackgroundColor="White"
+                    WidthRequest="200"
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    FontFamily="{StaticResource MontserratBold}"
+                    Margin="0, 15 , 0 , 5" 
+                    Clicked="GoToMap"/>
+            <Button Text="Plan Trip"
+                    TextColor="#3F16AB"
+                    BackgroundColor="White"
+                    WidthRequest="200"
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    FontFamily="{StaticResource MontserratBold}"
+                    Margin="0, 5 , 0 , 5"
+                    Clicked="PlanTrip"/>
+            <Button Text="Favorite Stations"
+                    TextColor="#3F16AB"
+                    BackgroundColor="White"
+                    WidthRequest="200"
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    FontFamily="{StaticResource MontserratBold}"
+                    Margin="0, 5 , 0 , 5" 
+                    Clicked="FavoriteStations"/>
+            <Button Text="My Trips"
+                    TextColor="#3F16AB"
+                    BackgroundColor="White"
+                    WidthRequest="200"
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    FontFamily="{StaticResource MontserratBold}"
+                    Margin="0, 5 , 0 , 5" 
+                    Clicked="MyTrips"/>
+            <Button Text="My Vehicles"
+                    TextColor="#3F16AB"
+                    BackgroundColor="White"
+                    WidthRequest="200"
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    FontFamily="{StaticResource MontserratBold}"
+                    Margin="0, 5 , 0 , 5" 
+                    Clicked="MyVehicles"/>
+            <Button Text="LogOut"
+                    TextColor="White"
+                    BackgroundColor="#1C7059"
+                    WidthRequest="200"
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    FontFamily="{StaticResource MontserratBold}"
+                    Margin="0, 5 , 0 , 5"
+                    Command="{Binding LogOut}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

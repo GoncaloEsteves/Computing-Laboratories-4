@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:fastEntry="clr-namespace:XamarinFastEntrySample.FastEntry;assembly=XamarinFastEntry.Behaviors"
+             xmlns:viewModels="clr-namespace:PGB.ViewModels;assembly=PGB"
+             mc:Ignorable="d"
+             Title="Register Vehicle"
+             BackgroundColor="#151723"
+             x:Class="PGB.Pages.RegisterVehicle">
+
+    <ContentPage.BindingContext>
+        <viewModels:RegisterVehicleViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <ImageButton Source="car.png"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+            <Label Text="REGISTRATION NUMBER"
+                       TextColor="White"
+                       FontSize="13"
+                       FontFamily="{StaticResource MontserratLight}"
+                       VerticalOptions="Start" 
+                       HorizontalOptions="CenterAndExpand"/>
+            <Entry Placeholder="    AA-00-AA" 
+                   PlaceholderColor="#5282F0" 
+                   FontSize="13" 
+                   TextColor="#5282F0" 
+                   FontFamily="{StaticResource MontserratLight}" 
+                   VerticalOptions="Start" 
+                   Keyboard="Default"                   
+                   Text="{Binding Registration_number}">
+                <Entry.Behaviors>
+                    <fastEntry:XamarinFastEntryBehaviour Mask="##-##-##" 
+                                                                       MaxLength="8"/>
+                </Entry.Behaviors>
+            </Entry>
+                <Label Text="Model"
+                       TextColor="White"
+                       FontSize="13"
+                       FontFamily="{StaticResource MontserratLight}"
+                       VerticalOptions="Start" 
+                       HorizontalOptions="CenterAndExpand"/>
+            <Picker Title="    Select Model"
+                        TitleColor="#5282F0"
+                        FontSize="13"
+                       FontFamily="{StaticResource MontserratLight}"
+                        TextColor="#5282F0"
+                    ItemsSource="{Binding Models}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding SelectedModel}" />
+            <Label Text="LAST CONSUMPTION REPORT"
+                       TextColor="White"
+                       FontSize="13"
+                       FontFamily="{StaticResource MontserratLight}"
+                       VerticalOptions="Start" 
+                       HorizontalOptions="CenterAndExpand"/>
+            <Entry Placeholder="    230 Wh/km" PlaceholderColor="#5282F0" Keyboard="Numeric" FontSize="13" TextColor="#5282F0" FontFamily="{StaticResource MontserratLight}" VerticalOptions="Start" Text="{Binding Last_Consumption}"/>
+            <StackLayout VerticalOptions="EndAndExpand" Margin="0, 0 , 0 ,30">
+                <Button Text="Register"
+                        TextColor="White"
+                        BackgroundColor="#1C7059"
+                        WidthRequest="200"
+                        HorizontalOptions="Center"
+                        Margin="0, 10 , 0 ,10"
+                        Command="{Binding RegisterVehicle}"
+                        FontFamily="{StaticResource MontserratBold}"/>
+            <Button Text="Cancel"
+                        TextColor="White"
+                        BackgroundColor="#1C7059"
+                        WidthRequest="200"
+                        HorizontalOptions="Center"
+                        Margin="0, 0 , 0 ,10"
+                        Clicked="Cancel"
+                        FontFamily="{StaticResource MontserratBold}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

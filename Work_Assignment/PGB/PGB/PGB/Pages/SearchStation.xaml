@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:PGB.ViewModels;assembly=PGB"
+             Title="Search Station"
+             mc:Ignorable="d"
+             BackgroundColor="#151723"
+             x:Class="PGB.Pages.SearchStation">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar x:Name="searchBar" SearchCommand="{Binding PerformSearch}"
+                       SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" 
+                       VerticalOptions="Start" Placeholder="Find a station..." HeightRequest="45" CancelButtonColor="#151723" FontSize="17" PlaceholderColor="Gray" TextColor ="Gray" FontFamily="{StaticResource MontserratLight}" BackgroundColor="White"/>
+            <ListView ItemsSource="{Binding Result}" IsPullToRefreshEnabled="true" x:Name="results" ListView.RowHeight="100">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Command="{Binding Path=BindingContext.Detailed,Source={x:Reference Name=results}}" CommandParameter="{Binding .}"
+                                          Text="ShowDetails"/>
+                            </ViewCell.ContextActions>
+                            <StackLayout Orientation="Horizontal" Padding="0,10">
+                                <Image Source="{Binding Connections[0].Level.IsFastChargeCapable, Converter={StaticResource ChargerConverter}}"
+                                    HeightRequest="60"
+                                    WidthRequest="60"
+                                     HorizontalOptions="Start"
+                                       Margin=" 30, 0,30,0"/>
+                                <StackLayout HorizontalOptions="Center"
+                                            VerticalOptions="Center">
+                                    <Label Text="{Binding AddressInfo.Title}"
+                                        FontSize="10"
+                                         TextColor="White"
+                                         FontFamily="{StaticResource MontserratLight}"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

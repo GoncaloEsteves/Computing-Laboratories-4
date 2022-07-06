@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:PGB.ViewModels;assembly=PGB"
+             mc:Ignorable="d"
+             Title="Notifications"
+             BackgroundColor="#151723"
+             x:Class="PGB.Pages.Notifications">
+
+    <ContentPage.BindingContext>
+        <viewModels:NotificationsViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding Notifications}" IsPullToRefreshEnabled="true" x:Name="notifications">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Clicked="ShowDetails"
+                                          CommandParameter="{Binding .}"
+                                          Text="ShowDetails"/>
+                                <MenuItem Command="{Binding Path=BindingContext.Delete,Source={x:Reference Name=notifications}}" CommandParameter="{Binding .}"
+                                      IsDestructive="True"
+                                      Text="Delete"/>
+                            </ViewCell.ContextActions>
+                            <StackLayout>
+                                <Label FontSize="20" Text="{Binding Text}" TextColor="White"  FontFamily="{StaticResource MontserratLight}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

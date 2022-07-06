@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             BackgroundColor="#151723"
+             Title="Charging Station"
+             x:Class="PGB.Pages.DetailedChargingStation">
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*" />
+                <RowDefinition Height="40*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <maps:Map x:Name="MyMap" MapType="Street" HasZoomEnabled="True" Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand"/>
+            <FlexLayout Grid.Row="1" JustifyContent="SpaceEvenly" AlignItems="Center" Direction="Column">
+                <Label TextColor="#4EDBA8"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="StartAndExpand"
+                   Margin="0, 40, 0 ,10">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Operator Name: " TextColor="#4EDBA8"/>
+                            <Span Text="{Binding ChargingStation.OperatorInfo.Title}" TextColor="White"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label TextColor="#4EDBA8"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="StartAndExpand"
+                   Margin="0, 0, 0 ,10">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Address: " TextColor="#4EDBA8"/>
+                            <Span Text="{Binding ChargingStation.AddressInfo.Title}" TextColor="White"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label TextColor="#4EDBA8"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="StartAndExpand"
+                   Margin="0, 0, 0 ,10">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Operational: " TextColor="#4EDBA8"/>
+                            <Span Text="{Binding ChargingStation.StatusType.IsOperational}" TextColor="White"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label TextColor="#4EDBA8"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="StartAndExpand"
+                   Margin="0, 0, 0 ,10">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Operational Chargers: " TextColor="#4EDBA8"/>
+                            <Span Text="{Binding NumChargers}" TextColor="White"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <StackLayout Orientation="Horizontal">
+                    <ImageButton Source="trips.png"
+                                HorizontalOptions="StartAndExpand"
+                             HeightRequest="36"
+                             BackgroundColor="Transparent"
+                             WidthRequest="36"
+                                 Margin="0,0,20,0"
+                             Clicked="GoToMainMap"/>
+                    <ImageButton Source="chargers.png"
+                                 HorizontalOptions="StartAndExpand"
+                             HeightRequest="36"
+                             BackgroundColor="Transparent"
+                             WidthRequest="36"
+                                 Margin="0,0,20,0"
+                             Clicked="GoToFavs"/>
+                    <ImageButton Source="{Binding Fav, Converter={StaticResource FavoriteConverter}}"
+                                 HorizontalOptions="StartAndExpand"
+                             HeightRequest="36"
+                             BackgroundColor="Transparent"
+                             WidthRequest="36"
+                                 Margin="0,0,20,0"
+                             Command="{Binding AddFavorite}"/>
+                    <ImageButton Source="right_arrow_profile.png"
+                                 HorizontalOptions="StartAndExpand"
+                             HeightRequest="36"
+                             BackgroundColor="Transparent"
+                             WidthRequest="36"
+                             Command="{Binding NavigateTo}"/>
+                </StackLayout>
+            </FlexLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

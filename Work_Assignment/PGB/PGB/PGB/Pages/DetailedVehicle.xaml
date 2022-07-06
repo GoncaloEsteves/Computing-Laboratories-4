@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundColor="#151723"
+             Title="Vehicle"
+             x:Class="PGB.Pages.DetailedVehicle">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#151723" Padding="40">
+            <Image  
+                    HeightRequest="120"
+                    WidthRequest="120"
+                    Source="electric_car.png"
+                    HorizontalOptions="Center"
+                    Aspect="Fill">
+            </Image>
+            <StackLayout>
+                <Label TextColor="#4EDBA8"
+                   Text="Registration Number:"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="Center"
+                   Margin="0, 60, 0 ,0"/>
+                <Label TextColor="White"
+                   Text="{Binding Vehicle.RegistrationNumber}"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="Center"
+                   Margin="0, 0, 0 ,20"/>
+                <Label TextColor="#4EDBA8"
+                   Text="Model:"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="Center"/>
+                <Label TextColor="White"
+                   Text="{Binding Vehicle.Name}"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="Center"
+                   Margin="0, 0, 0 ,20"/>
+                <Label TextColor="#4EDBA8"
+                   Text="Last Consumption Report:"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="Center"/>
+                <Label TextColor="White"
+                   FontSize="15"
+                   FontFamily="{StaticResource MontserratBold}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Vehicle.LastConsumptionReport}" TextColor="White"/>
+                            <Span Text=" Wh/km" TextColor="White"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+            <FlexLayout JustifyContent="SpaceEvenly" AlignItems="Center" Direction="Row" VerticalOptions="EndAndExpand">
+                <ImageButton Source="back.png"
+                                HorizontalOptions="StartAndExpand"
+                             HeightRequest="40"
+                             BackgroundColor="Transparent"
+                             WidthRequest="40"
+                                 Margin="0,0,20,0"
+                             Clicked="GoBack"/>
+                <ImageButton Source="{Binding Fav, Converter={StaticResource FavoriteConverter}}"
+                                 HorizontalOptions="StartAndExpand"
+                             HeightRequest="40"
+                             BackgroundColor="Transparent"
+                             WidthRequest="40"
+                                 Margin="0,0,20,0"
+                             Command="{Binding Favorite}"/>
+                <ImageButton Source="trash.png"
+                                 HorizontalOptions="StartAndExpand"
+                             HeightRequest="40"
+                             BackgroundColor="Transparent"
+                             WidthRequest="40"
+                             Command="{Binding Delete}"/>
+                </FlexLayout>
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

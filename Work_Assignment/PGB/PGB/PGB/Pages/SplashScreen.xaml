@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundColor="#151723"
+             x:Class="PGB.Pages.Start">
+    <ContentPage.Content>
+        <StackLayout>
+            <ImageButton Source="car_2.png"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" 
+                    Clicked="OnButtonClicked"
+                    Margin="0,100,0,-50"/>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

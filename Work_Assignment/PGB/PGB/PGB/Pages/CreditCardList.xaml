@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:PGB.ViewModels;assembly=PGB"
+             mc:Ignorable="d"
+             Title="My Credit Cards"
+             BackgroundColor="#151723"
+             x:Class="PGB.Pages.CreditCardList">
+    
+    <ContentPage.BindingContext>
+        <viewModels:CreditCardListViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding CreditCards}" IsPullToRefreshEnabled="true" x:Name="creditcards" ListView.RowHeight="100">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <ViewCell.ContextActions>
+                                <MenuItem Command="{Binding Path=BindingContext.Delete,Source={x:Reference Name=creditcards}}" CommandParameter="{Binding .}"
+                                      IsDestructive="True"
+                                      Text="Delete"/>
+                            </ViewCell.ContextActions>
+                            <StackLayout Orientation="Horizontal" Padding="0,10">
+                                <Image Source="{Binding CardNumber, Converter={StaticResource CardLightConverter}}"
+                                    HeightRequest="50"
+                                    WidthRequest="50"
+                                     HorizontalOptions="Start"
+                                       Margin=" 50, 0,100,0"/>
+                                <StackLayout >
+                                    <Label Text="{Binding CardType}"
+                                           FontSize="20"
+                                            TextColor="White"
+                                            FontFamily="{StaticResource MontserratLight}"
+                                           HorizontalOptions="Center"
+                                            VerticalOptions="Center"/>
+                                    <Label Text="{Binding CardNumber}"
+                                        FontSize="10"
+                                         TextColor="White"
+                                         FontFamily="{StaticResource MontserratLight}"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <FlexLayout JustifyContent="SpaceEvenly" AlignItems="Center" Direction="Row">
+                <ImageButton Source="user.png"
+                         HorizontalOptions="Center"
+                         VerticalOptions="EndAndExpand"
+                         BackgroundColor="Transparent"
+                         HeightRequest="40"
+                         WidthRequest="40"
+                         Margin="0,0,0,20"
+                         Clicked="GoProfile"/>
+                <ImageButton Source="more.png"
+                             HorizontalOptions="Center"
+                             VerticalOptions="EndAndExpand"
+                         BackgroundColor="Transparent"
+                         HeightRequest="40"
+                         WidthRequest="40"
+                          Margin="0,0,0,20"
+                         Clicked="AddCreditCard"/>
+            </FlexLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

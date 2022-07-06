@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PGB.Pages.TripPlanDetails"
+             Title="Trip Details"
+             BackgroundColor="#151723">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label HorizontalOptions="Center" Text="{Binding TotalTripDuration}" FontSize="20" FontFamily="{StaticResource MontserratBold}" TextColor="White"/>
+            <FlexLayout JustifyContent="SpaceAround">
+                <Image Source="electric_car.png" HeightRequest="40" WidthRequest="40"></Image>
+                <StackLayout>
+                    <Label Text="{Binding TotalDrivingDuration}" TextColor="White" FontFamily="{StaticResource MontserratLight}"></Label>
+                    <Label Text="{Binding TotalDrivingDistance}" TextColor="White" FontFamily="{StaticResource MontserratLight}"></Label>
+                </StackLayout>
+                <Image Margin="0,10,0,90" Source="battery.png" HeightRequest="40" WidthRequest="40"></Image>
+                <StackLayout>
+                    <Label Text="{Binding TotalChargingDuration}" TextColor="White" FontFamily="{StaticResource MontserratLight}"></Label>
+                    <Label Text="{Binding NumberOfCharges}" TextColor="White" FontFamily="{StaticResource MontserratLight}"></Label>
+                    <Label Text="{Binding TotalTripCost}" TextColor="White" FontFamily="{StaticResource MontserratLight}"></Label>
+                </StackLayout>
+            </FlexLayout>
+            <Label Margin="20,20,20,20" Text="Step by step" FontSize="15" TextColor="White" FontFamily="{StaticResource MontserratBold}" />
+            <ListView ItemsSource="{Binding TripDetails}" IsPullToRefreshEnabled="true" x:Name="favorites" ListView.RowHeight="150">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="0,0">
+                                <Image Source="{Binding ImageSource}"
+                                    HeightRequest="40"
+                                    WidthRequest="40"
+                                    HorizontalOptions="Start"
+                                    Margin="20, 0, 20,0"/>
+                                <StackLayout HorizontalOptions="Center"
+                                            VerticalOptions="Center">
+                                    <Label Text="{Binding Name}"
+                                           FontSize="15"
+                                            TextColor="White"
+                                            FontFamily="{StaticResource MontserratLight}"/>
+                                    <FlexLayout>
+                                        <Image Margin="0,0,10,0" IsVisible="{Binding HasClock}" Source="clock.png" HeightRequest="15" WidthRequest="15"/>
+                                        <Label IsVisible="{Binding HasClock}" Text="{Binding Duration}"
+                                               FontSize="11"
+                                               TextColor="White"
+                                               FontFamily="{StaticResource MontserratLight}"/>
+                                    </FlexLayout>
+                                    <FlexLayout>
+                                        <Image Margin="0,0,10,0" Source="battery.png" HeightRequest="15" WidthRequest="15"/>
+                                        <Label Text="{Binding Percentage}"
+                                            FontSize="11"
+                                            TextColor="White"
+                                            FontFamily="{StaticResource MontserratBold}"/>
+                                    </FlexLayout>
+                                    <Label IsVisible="{Binding HasDrivingNext}" Text="{Binding DrivingNext}"
+                                           FontSize="14"
+                                           TextColor="White"
+                                           FontFamily="{StaticResource MontserratBold}" />
+
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:PGB.ViewModels;assembly=PGB"
+             mc:Ignorable="d"
+             Title="Register Charging Station"
+             BackgroundColor="#4EDBA1"
+             x:Class="PGB.Pages.RegisterChargingStation">
+
+    <ContentPage.BindingContext>
+        <viewModels:RegisterChargingStationViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout BackgroundColor="#4EDBA8"
+                     HorizontalOptions="Fill"
+                     VerticalOptions="CenterAndExpand">
+                <Label Text="NAME OF THE CHARGING STATION"
+                       TextColor="#6B7C93"
+                       FontSize="13"
+                       FontFamily="{StaticResource MontserratLight}"
+                       VerticalOptions="Start" 
+                       HorizontalOptions="CenterAndExpand"/>
+                <Entry Placeholder="    BRG-00001" PlaceholderColor="#5282F0" Keyboard="Chat" FontSize="13" TextColor="#5282F0" FontFamily="{StaticResource MontserratLight}" VerticalOptions="Start" Text="{Binding Name}"/>
+                <Label Text="STREET"
+                       TextColor="#6B7C93"
+                       FontSize="13"
+                       FontFamily="{StaticResource MontserratLight}"
+                       VerticalOptions="Start" 
+                       HorizontalOptions="CenterAndExpand"/>
+                <Entry Placeholder="    Rua da Universidade" PlaceholderColor="#5282F0" Keyboard="Chat" FontSize="13" TextColor="#5282F0" FontFamily="{StaticResource MontserratLight}" VerticalOptions="Start" Text="{Binding Street}"/>
+                <Label Text="CITY"
+                       TextColor="#6B7C93"
+                       FontSize="13"
+                       FontFamily="{StaticResource MontserratLight}"
+                       VerticalOptions="Start" 
+                       HorizontalOptions="CenterAndExpand"/>
+                <Entry Placeholder="    Braga" PlaceholderColor="#5282F0" Keyboard="Chat" FontSize="13" TextColor="#5282F0" FontFamily="{StaticResource MontserratLight}" VerticalOptions="Start" Text="{Binding City}"/>
+                <Label Text="LOCATION TYPE"
+                       TextColor="#6B7C93"
+                       FontSize="13"
+                       FontFamily="{StaticResource MontserratLight}"
+                       VerticalOptions="Start" 
+                       HorizontalOptions="CenterAndExpand"/>
+                <Entry Placeholder="    Parking lot" PlaceholderColor="#5282F0" Keyboard="Chat" FontSize="13" TextColor="#5282F0" FontFamily="{StaticResource MontserratLight}" VerticalOptions="Start" Text="{Binding Location_Type}"/>
+                <Label Text="ACCESS TYPE"
+                       TextColor="#6B7C93"
+                       FontSize="13"
+                       FontFamily="{StaticResource MontserratLight}"
+                       VerticalOptions="Start" 
+                       HorizontalOptions="CenterAndExpand"/>
+                <Entry Placeholder="    Public" PlaceholderColor="#5282F0" Keyboard="Chat" FontSize="13" TextColor="#5282F0" FontFamily="{StaticResource MontserratLight}" VerticalOptions="Start" Text="{Binding Access_Type}"/>
+                <Label Text="RESTRITIONS"
+                       TextColor="#6B7C93"
+                       FontSize="13"
+                       FontFamily="{StaticResource MontserratLight}"
+                       VerticalOptions="Start" 
+                       HorizontalOptions="CenterAndExpand"/>
+                <Entry Placeholder="    Closed at night" PlaceholderColor="#5282F0" Keyboard="Chat" FontSize="13" TextColor="#5282F0" FontFamily="{StaticResource MontserratLight}" VerticalOptions="Start" Text="{Binding Restritions}"/>
+                <Label Text="ADDITIONAL INFO"
+                       TextColor="#6B7C93"
+                       FontSize="13"
+                       FontFamily="{StaticResource MontserratLight}"
+                       VerticalOptions="Start" 
+                       HorizontalOptions="CenterAndExpand"/>
+                <Entry Placeholder="    Pin to enter: 1234" PlaceholderColor="#5282F0" Keyboard="Chat" FontSize="13" TextColor="#5282F0" FontFamily="{StaticResource MontserratLight}" VerticalOptions="Start" Text="{Binding Additional_Info}"/>
+                <Button Text="Submit"
+                        TextColor="White"
+                        BackgroundColor="#1C7059"
+                        WidthRequest="200"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                        Margin="0 , 30, 0 , 30"
+                        FontFamily="{StaticResource MontserratBold}"
+                        Command="{Binding RegisterChargingStation}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
